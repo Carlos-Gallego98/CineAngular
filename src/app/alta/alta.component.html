@@ -1,0 +1,66 @@
+<div class="container">
+    <h1 class="text-primary">Formulario de alta de peliculas</h1>
+    <form [formGroup]="miformulario">
+        <div class="form-group">
+            <label>Titulo de pelicula</label>
+            <input type="text" class="form-control" formControlName="titulo">
+            <div *ngIf="miformulario.controls['titulo'].invalid && 
+            miformulario.controls['titulo'].dirty">
+                <div *ngIf="miformulario.controls['titulo'].errors.required"
+                class="alert alert-danger">
+                    El titulo de pelicula es obligatorio
+                </div>
+                <div *ngIf="miformulario.controls['titulo'].errors.minlength" 
+                class="alert alert-danger">
+                    El titulo de pelicula NO debe tener menos de 10 caracteres
+                </div>
+                <!-- {{miformulario.controls['titulo'].errors | json}} -->
+            </div>
+        </div>
+        <div class="form-group">
+            <label>Codigo de productora</label>
+            <input type="text" class="form-control" placeholder="XXXX-999" formControlName="productora">
+            <div *ngIf="miformulario.controls['productora'].invalid && 
+            miformulario.controls['productora'].dirty">
+                <div *ngIf="miformulario.controls['productora'].errors.required" 
+                class="alert alert-danger">
+                    El codigo de productora es obligatorio</div>
+                <div *ngIf="miformulario.controls['productora'].errors.pattern"
+                class="alert alert-danger">El codigo de productora debe ser XXXX-999</div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label>Año</label>
+            <input type="text" class="form-control" formControlName="ano">
+            <div *ngIf="miformulario.controls['ano'].invalid && 
+            miformulario.controls['ano'].dirty">
+                <div class="alert alert-danger"
+                *ngIf="miformulario.controls['ano'].errors.required" 
+                class="alert alert-danger">El año es obligatorio</div>
+                <div class="alert alert-danger"
+                *ngIf="miformulario.controls['ano'].errors.pattern"  >El año debe ser numerico con 9999</div>
+                <div class="alert alert-danger"
+                *ngIf="miformulario.controls['ano'].errors.min || miformulario.controls['ano'].errors.max"
+                class="alert alert-danger">El año debe estar entre 1900 al 2020</div>
+            </div>
+             <!-- {{miformulario.controls['ano'].errors | json}}  -->
+        </div>
+        <div class="form-group">
+            <label>Genero</label>
+            <select formControlName="genero">
+                <option value="Animacion">Animacion</option>
+                <option value="Aventura">Aventura</option>
+                <option value="Terror">Terror</option>
+                <option value="Ciencia-Ficcion">Ciencia-Ficcion</option>
+            </select>
+            <div *ngIf="miformulario.controls['genero'].invalid && 
+            miformulario.controls['genero'].dirty">
+                <div *ngIf="miformulario.controls['genero'].errors.required" 
+                class="alert alert-danger">
+                    El Genero es obligatorio
+                </div>
+            </div>
+        </div>
+    <button (click)="anadir()" [disabled]="!miformulario.valid" class="btn btn-primary">Alta</button>
+    </form>
+</div>

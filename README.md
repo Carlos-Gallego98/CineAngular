@@ -1,3 +1,7 @@
+# CineAngular
+
+El proyecto ANGULAR es de Desarrollo de Interfaces
+
 # FormularioCine
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 9.1.0.
